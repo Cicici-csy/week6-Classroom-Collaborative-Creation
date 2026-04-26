@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Real Time Social Spaces</title>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.183.2/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.183.2/examples/jsm/"
+        }
+      }
+    </script>
+
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      body {
+        background: #04040d;
+        font-family: 'Courier New', Courier, monospace;
+        overflow: hidden;
+      }
+
+      /* ── HUD panel ── */
+      #hud {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10;
+        background: #04040d;
+        border: 1px solid #1a1a2e;
+        color: #a0a0c0;
+        font-size: 11px;
+        letter-spacing: 1px;
+        user-select: none;
+        pointer-events: auto;
+        min-width: 172px;
+      }
+
+      .hud-row {
+        padding: 6px 12px;
+        border-bottom: 1px solid #0f0f1e;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .hud-row:last-child { border-bottom: none; }
+
+      .hud-key {
+        color: #ffffff;
+        text-transform: uppercase;
+        font-size: 20px;
+        letter-spacing: 2px;
+        flex-shrink: 0;
+      }
+
+      #seat-val {
+        color: #c8c8ff;
+        margin-left: auto;
+        font-size: 11px;
+      }
+
+      /* ── swatches ── */
+      #swatches {
+        display: flex;
+        gap: 5px;
+        margin-left: auto;
+      }
+
+      .swatch {
+        width: 14px;
+        height: 14px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        flex-shrink: 0;
+        image-rendering: pixelated;
+      }
+      .swatch:hover  { border-color: rgba(255,255,255,0.5); }
+      .swatch.active { border-color: #fff; outline: 1px solid #fff; outline-offset: 1px; }
+    </style>
+  </head>
+
+  <body>
+    <div id="hud">
+      <div class="hud-row">
+        <span class="hud-key">REAL-TIME SEATS</span>
+      </div>
+      <div class="hud-row">
+        <span class="hud-key">SEAT</span>
+        <span id="seat-val">--</span>
+      </div>
+      <div class="hud-row">
+        <span class="hud-key">COLOR</span>
+        <div id="swatches"></div>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
